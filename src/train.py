@@ -45,6 +45,8 @@ from keras.layers import Dense, LSTM, Dropout
 from keras.optimizers import SGD, RMSprop, Adadelta, Adagrad, Adam, Adamax
 from keras.regularizers import l2
 
+xTrain = xTrain.reshape(xTrain.shape + (1,))
+
 net = Sequential()
 net.add(LSTM(128, input_shape=(347, 1), return_sequences=False, go_backwards=False,
                W_regularizer=l2(0.005), U_regularizer=l2(0.005),
@@ -58,8 +60,6 @@ net.compile(loss='mse', optimizer='rmsprop')
 #net.add(Dropout(0.5))
 #net.add(Dense(160, init='glorot_uniform', activation='tanh'))
 #net.add(Dense(1, init='uniform', activation='linear'))
-
-net.compile(loss='mse', optimizer='rmsprop')
 
 net.fit(xTrain, y, batch_size=32, nb_epoch=5)
 
