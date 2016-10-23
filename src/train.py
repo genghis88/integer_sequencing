@@ -74,4 +74,6 @@ net.fit(xTrain, y, batch_size=256, nb_epoch=5)
 
 y_pred = net.predict(xTrain)
 
+y_pred = pd.DataFrame(y_pred)
+
 y_pred.to_csv('preds/pred1.csv')
